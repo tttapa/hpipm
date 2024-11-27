@@ -37,6 +37,7 @@ from ctypes import *
 import ctypes.util
 import numpy as np
 
+from .load import load_hpipm
 
 
 class hpipm_ocp_qcqp_sol:
@@ -48,7 +49,7 @@ class hpipm_ocp_qcqp_sol:
 		self.dim = dim
 
 		# load hpipm shared library
-		__hpipm   = CDLL('libhpipm.so')
+		__hpipm = load_hpipm()
 		self.__hpipm = __hpipm
 
 		# C qp struct

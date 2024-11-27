@@ -1,0 +1,7 @@
+[requires]
+hpipm/tttapa.20241127
+[generators]
+CMakeDeps
+CMakeToolchain
+[layout]
+cmake_layout
