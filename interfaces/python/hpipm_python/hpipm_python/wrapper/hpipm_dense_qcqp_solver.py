@@ -37,6 +37,9 @@ from ctypes import *
 import ctypes.util
 import numpy as np
 
+from .load import load_hpipm
+
+
 #print("above class")
 
 class hpipm_dense_qcqp_solver:
@@ -45,7 +48,7 @@ class hpipm_dense_qcqp_solver:
 	def __init__(self, qcqp_dims, arg):
 
 		# load hpipm shared library
-		__hpipm   = CDLL('libhpipm.so')
+		__hpipm = load_hpipm()
 		self.__hpipm = __hpipm
 		# set up ipm workspace struct
 		sizeof_d_dense_qcqp_ipm_workspace = __hpipm.d_dense_qcqp_ipm_ws_strsize()
