@@ -366,12 +366,23 @@ target_include_directories(hpipm
 
 target_link_libraries(hpipm blasfeo)
 
-install(TARGETS hpipm EXPORT hpipmConfig
+install(TARGETS hpipm EXPORT hpipmTargets
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
 	RUNTIME DESTINATION bin)
 
-install(EXPORT hpipmConfig DESTINATION cmake)
+if (HPIPM_FIND_BLASFEO)
+	include(CMakePackageConfigHelpers)
+	configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
+		"${CMAKE_CURRENT_BINARY_DIR}/hpipmConfig.cmake"
+		INSTALL_DESTINATION lib/cmake/hpipm)
+	install(FILES
+		"${CMAKE_CURRENT_BINARY_DIR}/hpipmConfig.cmake"
+		DESTINATION lib/cmake/hpipm)
+	install(EXPORT hpipmTargets
+		FILE hpipmTargets.cmake
+		DESTINATION lib/cmake/hpipm)
+endif()
 
 file(GLOB_RECURSE HPIPM_HEADERS "include/*.h")
 install(FILES ${HPIPM_HEADERS} DESTINATION ${HPIPM_HEADERS_INSTALLATION_DIRECTORY})
