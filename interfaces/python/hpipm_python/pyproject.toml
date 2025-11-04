@@ -19,18 +19,17 @@ dependencies = ["numpy<3"]
 dynamic = ["version", "description"]
 
 [build-system]
-requires = ["py-build-cmake~=0.3.0"]
+requires = ["py-build-cmake~=0.6.0a2", "conan~=2.22.1"]
 build-backend = "py_build_cmake.build"
 
 [tool.py-build-cmake.module]
 name = "hpipm_python"
 
-[tool.py-build-cmake.cmake]
+[tool.py-build-cmake.sdist]
+include = ["conanfile.txt", "CMakeLists.txt"]
+
+[tool.py-build-cmake.conan.cmake]
 minimum_version = "3.15"
-build_path = "build"
-preset = "conan-default"
-config = "Release"
-build_presets = "conan-release"
 install_components = ["python_binaries"]
 find_python = false
 find_python3 = false
