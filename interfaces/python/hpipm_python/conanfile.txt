@@ -1,5 +1,5 @@
 [requires]
-hpipm/tttapa.20250523
+hpipm/tttapa.20251105
 [generators]
 CMakeDeps
 CMakeToolchain
